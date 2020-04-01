@@ -4,8 +4,9 @@ import {pack}   from './pack';
 import {unpack} from './unpack';
 import {concat} from './utils';
 
-type Serializable = {
-    [key: string]: string | number | Uint8Array;
+export type SerializableValues = string | number | Uint8Array
+export type Serializable = {
+    [key: string]: SerializableValues;
 }
 
 /**
@@ -31,7 +32,7 @@ export const serialize = (source: Serializable): Uint8Array => {
  * @param source
  */
 export const deserialize = (source: Uint8Array): Serializable => {
-    const entries: Array<[string, keyof Serializable]> = [];
+    const entries: Array<[keyof Serializable, SerializableValues]> = [];
     let data: Uint8Array;
     let offset = 0;
 

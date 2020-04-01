@@ -1,3 +1,4 @@
+import {SerializableValues} from './index';
 import {NasonType, typeFor} from './type';
 
 const encodeString = (t: NasonType, s: string): Uint8Array => {
@@ -27,7 +28,7 @@ const encodeNumber = (t: NasonType, n: number): Uint8Array => {
  * Encodes a value
  * @param val
  */
-export const encode = (val: number | string | Uint8Array): Uint8Array => {
+export const encode = (val: SerializableValues): Uint8Array => {
     const type = typeFor(val);
 
     if (type === null) {

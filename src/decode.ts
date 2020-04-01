@@ -1,4 +1,5 @@
-import {NasonType} from './type';
+import {SerializableValues} from './index';
+import {NasonType}          from './type';
 
 const decodeString = (s: Uint8Array): string => {
     return new TextDecoder().decode(s);
@@ -18,7 +19,7 @@ const decodeNumber = (n: Uint8Array): number => {
  * Decodes a value
  * @param val
  */
-export const decode = (val: Uint8Array): number | string | Uint8Array => {
+export const decode = (val: Uint8Array): SerializableValues => {
     const data = new Uint8Array(val.buffer, 1);
     const id = val[0] as NasonType;
 
@@ -30,7 +31,10 @@ export const decode = (val: Uint8Array): number | string | Uint8Array => {
             return decodeNumber(data);
         }
         case NasonType.Binary: {
-            return data;
+            return data as Uint8Array;
+        }
+        default: {
+            throw new Error(`Unknown byte-set with id ${id}`);
         }
     }
 };
