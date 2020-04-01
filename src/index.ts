@@ -5,7 +5,7 @@ import {unpack} from './unpack';
 import {concat} from './utils';
 
 type Serializable = {
-    [key: string]: string | number;
+    [key: string]: string | number | Uint8Array;
 }
 
 /**

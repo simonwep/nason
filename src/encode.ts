@@ -27,7 +27,7 @@ const encodeNumber = (t: NasonType, n: number): Uint8Array => {
  * Encodes a value
  * @param val
  */
-export const encode = (val: number | string): Uint8Array => {
+export const encode = (val: number | string | Uint8Array): Uint8Array => {
     const type = typeFor(val);
 
     if (type === null) {
@@ -39,5 +39,10 @@ export const encode = (val: number | string): Uint8Array => {
             return encodeString(type, val as string);
         case NasonType.Number:
             return encodeNumber(type, val as number);
+        case NasonType.Binary:
+            return new Uint8Array([
+                NasonType.Binary,
+                ...(val as Uint8Array)
+            ]);
     }
 };

@@ -40,5 +40,17 @@ describe('Simple serialization', () => {
         const deserialized = deserialize(serialized);
         expect(deserialized).toEqual(data);
     });
+
+    it('Should support native Uint8Arrays', () => {
+        const data = {
+            'array': new Uint8Array([123, 233, 32])
+        };
+
+        const serialized = serialize(data);
+        expect(serialized).toBeInstanceOf(Uint8Array);
+
+        const deserialized = deserialize(serialized);
+        expect(deserialized).toEqual(data);
+    });
 });
 

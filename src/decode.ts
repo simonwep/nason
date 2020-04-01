@@ -18,9 +18,9 @@ const decodeNumber = (n: Uint8Array): number => {
  * Decodes a value
  * @param val
  */
-export const decode = (val: Uint8Array): number | string => {
+export const decode = (val: Uint8Array): number | string | Uint8Array => {
     const data = new Uint8Array(val.buffer, 1);
-    const id = val[0];
+    const id = val[0] as NasonType;
 
     switch (id) {
         case NasonType.String: {
@@ -28,6 +28,9 @@ export const decode = (val: Uint8Array): number | string => {
         }
         case NasonType.Number: {
             return decodeNumber(data);
+        }
+        case NasonType.Binary: {
+            return data;
         }
     }
 };
