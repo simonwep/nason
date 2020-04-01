@@ -9,7 +9,7 @@ const encodeString = (t: NasonType, s: string): Uint8Array => {
 };
 
 const encodeNumber = (t: NasonType, n: number): Uint8Array => {
-    const bits = n >= 0 ? Math.floor(Math.log2(n) + 1) : 32;
+    const bits = n > 0 ? Math.floor(Math.log2(n) + 1) : n === 0 ? 1 : 32;
     const length = Math.ceil(bits / 8);
     const data = new Uint8Array(length + 1);
     data[0] = t;

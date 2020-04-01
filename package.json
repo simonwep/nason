@@ -45,6 +45,7 @@
         "eslint-loader": "^3.0.3",
         "jest": "^25.2.4",
         "terser-webpack-plugin": "^2.3.5",
+        "ts-loader": "^6.2.2",
         "typescript": "^3.8.3",
         "webpack": "^4.42.1",
         "webpack-cli": "^3.3.11"
