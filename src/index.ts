@@ -1,9 +1,11 @@
+import {decode} from './decode';
+import {encode} from './encode';
 import {pack}   from './pack';
 import {unpack} from './unpack';
 import {concat} from './utils';
 
 type Serializable = {
-    [key: string]: string;
+    [key: string]: string | number;
 }
 
 /**
@@ -11,14 +13,13 @@ type Serializable = {
  * @param source
  */
 export const serialize = (source: Serializable): Uint8Array => {
-    const textEncoder = new TextEncoder();
     let data = new Uint8Array(0);
 
     for (const [key, value] of Object.entries(source)) {
         data = concat(
             data,
-            pack(textEncoder.encode(key)),
-            pack(textEncoder.encode(value))
+            pack(encode(key)),
+            pack(encode(value))
         );
     }
 
@@ -30,19 +31,18 @@ export const serialize = (source: Serializable): Uint8Array => {
  * @param source
  */
 export const deserialize = (source: Uint8Array): Serializable => {
-    const textDecoder = new TextDecoder();
-    const entries: Array<[string, string]> = [];
+    const entries: Array<[string, keyof Serializable]> = [];
     let data: Uint8Array;
     let offset = 0;
 
     // TODO: Throw error on overflow?
     while (offset < source.length) {
         [offset, data] = unpack(source, offset);
-        const str = textDecoder.decode(data);
+        const str = decode(data) as string;
 
         [offset, data] = unpack(source, offset);
         entries.push(
-            [str, textDecoder.decode(data)]
+            [str, decode(data)]
         );
     }
 
