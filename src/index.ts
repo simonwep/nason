@@ -4,7 +4,7 @@ import {pack}   from './pack';
 import {unpack} from './unpack';
 import {concat} from './utils';
 
-export type SerializableValues = string | number | Uint8Array
+export type SerializableValues = object | string | number | Uint8Array
 export type Serializable = {
     [key: string]: SerializableValues;
 }

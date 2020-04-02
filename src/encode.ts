@@ -1,5 +1,5 @@
-import {SerializableValues} from './index';
-import {NasonType, typeFor} from './type';
+import {Serializable, SerializableValues, serialize} from './index';
+import {NasonType, prependType, typeFor}             from './type';
 
 const encodeString = (t: NasonType, s: string): Uint8Array => {
     const encoded = new TextEncoder().encode(s);
@@ -36,14 +36,17 @@ export const encode = (val: SerializableValues): Uint8Array => {
     }
 
     switch (type) {
-        case NasonType.String:
+        case NasonType.String: {
             return encodeString(type, val as string);
-        case NasonType.Number:
+        }
+        case NasonType.Number: {
             return encodeNumber(type, val as number);
-        case NasonType.Binary:
-            return new Uint8Array([
-                NasonType.Binary,
-                ...(val as Uint8Array)
-            ]);
+        }
+        case NasonType.Binary: {
+            return prependType(type, val as Uint8Array);
+        }
+        case NasonType.Object: {
+            return prependType(type, serialize(val as Serializable));
+        }
     }
 };
