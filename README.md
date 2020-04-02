@@ -1,0 +1,90 @@
+<h3 align="center">
+    <img src="https://user-images.githubusercontent.com/30767528/78268115-0b6b7000-7508-11ea-85ff-d077fd144d3f.png" alt="Logo">
+</h3>
+
+<h3 align="center">
+    Ultra tiny JSON serializer
+</h3>
+
+<p align="center">
+  <img alt="gzip size" src="https://img.badgesize.io/https://cdn.jsdelivr.net/npm/nason/lib/nason.min.js?compression=gzip&style=flat-square">
+  <img alt="brotli size" src="https://img.badgesize.io/https://cdn.jsdelivr.net/npm/nason/lib/nason.min.js?compression=brotli&style=flat-square">
+  <a href='https://coveralls.io/github/Simonwep/nason?branch=master'><img
+       src='https://img.shields.io/coveralls/github/Simonwep/nason?style=flat-square'
+       alt='Coverage Status'/></a>
+  <a href="https://github.com/Simonwep/nason/actions"><img
+     alt="Build Status"
+     src="https://img.shields.io/github/workflow/status/Simonwep/nason/CI?style=flat-square"/></a>
+  <a href="https://www.npmjs.com/package/nason"><img
+     alt="Download count"
+     src="https://img.shields.io/npm/dm/nason.svg?style=popout-square"></a>
+  <img alt="No dependencies" src="https://img.shields.io/badge/dependencies-none-27ae60.svg?style=popout-square">
+  <a href="https://www.jsdelivr.com/package/npm/nason"><img
+     alt="JSDelivr download count"
+     src="https://data.jsdelivr.com/v1/package/npm/nason/badge"></a>
+  <img alt="Current version"
+       src="https://img.shields.io/github/tag/Simonwep/nason.svg?color=3498DB&label=version&style=flat-square">
+  <a href="https://github.com/sponsors/Simonwep"><img
+     alt="Support me"
+     src="https://img.shields.io/badge/github-support-3498DB.svg?style=popout-square"></a>
+</p>
+
+
+
+> Disclaimer: This library is part of a bigger project and it's goal is to be as small as possible (I don't want to use the >200kb bundle of [bson](https://github.com/mongodb/js-bson)). This lib is only around 4kb, uncompressed.
+> It's only supposed to work within JS itself and not all data-types are implemented so far (see types-table at the bottom).
+>
+> The name is based on nashorn which is the german word for rhino.
+
+
+### Installation
+
+Install via npm:
+```shell
+$ npm install nason
+```
+
+Install via yarn:
+```shell
+$ yarn add nason
+```
+
+Include directly via [jsdelivr](https://www.jsdelivr.com/package/npm/nason):
+```html
+<script src="https://cdn.jsdelivr.net/npm/graceful-ws/lib/nason.min.js"></script>
+```
+
+> The project itself is written in [typescript](https://www.typescriptlang.org/) hence ts-support is out of the box.
+
+### Usage
+
+```js
+import {deserialize, serialize} from 'nason';
+
+// Serialize something, you'll get a Uint8Array in return.
+// You can pass any kind of supported data-type you want to serialize.
+const enc = serialize({
+    'hello': 'world',
+    'number': 13235,
+    'array': [1, 2, 3, 'abc']
+});
+
+// ... save enc to file or do whatever you want with it
+
+// Deserialize a previously serialized value
+const dec = deserialize(enc);
+console.log(dec); // Will be the same as initially passed into serialize
+```
+
+### Data-types
+
+| Data-type | Status                             |
+| --------- | ---------------------------------- |
+| `object`  | ✅ Fully supported                  |
+| `array`   | ✅ Fully supported                  |
+| `string`  | ✅ Fully supported                  |
+| `number`  | ⚠ No floating-point number support |
+| `boolean` | ✅ Fully supported                  |
+| `null`    | ✅ Fully supported                  |
+
+> `undefined` is not part of the json specification and will throw an error if you try to serialize it.
