@@ -1,7 +1,21 @@
-import {Serializable, SerializableValues, serialize} from './index';
-import {pack}                                        from './pack';
-import {NasonType, prependType, typeFor}             from './type';
-import {concat}                                      from './utils';
+import {SerializableObject, SerializableValues} from './index';
+import {pack}                                   from './pack';
+import {NasonType, prependType, typeFor}        from './type';
+import {concat}                                 from './utils';
+
+const encodeObject = (o: SerializableObject): Uint8Array => {
+    let data = new Uint8Array(0);
+
+    for (const [key, value] of Object.entries(o)) {
+        data = concat(
+            data,
+            pack(encode(key)),
+            pack(encode(value))
+        );
+    }
+
+    return data;
+};
 
 const encodeString = (s: string): Uint8Array => {
     return new TextEncoder().encode(s);
@@ -47,17 +61,17 @@ export const encode = (val: SerializableValues): Uint8Array => {
     }
 
     switch (type) {
+        case NasonType.Binary: {
+            return prependType(type, val as Uint8Array);
+        }
         case NasonType.String: {
             return prependType(type, encodeString(val as string));
         }
         case NasonType.Number: {
             return prependType(type, encodeNumber(val as number));
         }
-        case NasonType.Binary: {
-            return prependType(type, val as Uint8Array);
-        }
         case NasonType.Object: {
-            return prependType(type, serialize(val as Serializable));
+            return prependType(type, encodeObject(val as SerializableObject));
         }
         case NasonType.Array: {
             return prependType(type, encodeArray(val as Array<SerializableValues>));

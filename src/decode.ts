@@ -1,6 +1,25 @@
-import {deserialize, SerializableValues} from './index';
-import {NasonType}                       from './type';
-import {unpack}                          from './unpack';
+import {SerializableObject, SerializableValues} from './index';
+import {NasonType}                              from './type';
+import {unpack}                                 from './unpack';
+
+const decodeObject = (source: Uint8Array): SerializableObject => {
+    const entries: Array<[keyof SerializableObject, SerializableValues]> = [];
+    let data: Uint8Array;
+    let offset = 0;
+
+    // TODO: Throw error on overflow?
+    while (offset < source.length) {
+        [offset, data] = unpack(source, offset);
+        const str = decode(data) as string;
+
+        [offset, data] = unpack(source, offset);
+        entries.push(
+            [str, decode(data)]
+        );
+    }
+
+    return Object.fromEntries(entries);
+};
 
 const decodeString = (s: Uint8Array): string => {
     return new TextDecoder().decode(s);
@@ -40,17 +59,17 @@ export const decode = (val: Uint8Array): SerializableValues => {
     const id = val[0] as NasonType;
 
     switch (id) {
+        case NasonType.Binary: {
+            return data as Uint8Array;
+        }
         case NasonType.String: {
             return decodeString(data);
         }
         case NasonType.Number: {
             return decodeNumber(data);
         }
-        case NasonType.Binary: {
-            return data as Uint8Array;
-        }
         case NasonType.Object: {
-            return deserialize(data);
+            return decodeObject(data);
         }
         case NasonType.Array: {
             return decodeArray(data);
