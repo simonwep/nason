@@ -31,7 +31,7 @@ describe('Arrays serialization', () => {
                     'abc': 500
                 },
                 [
-                    true, false, null, 's',
+                    true, false, null, 's'
                 ],
                 new Uint8Array(
                     new Array(132755).fill(4)

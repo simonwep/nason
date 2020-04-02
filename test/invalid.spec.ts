@@ -7,7 +7,7 @@ describe('Invalid content', () => {
         expect(() => {
             deserialize(new Uint8Array([
                 4, 2, 1, 97,
-                2,
+                2
             ]));
         }).toThrow();
     });
