@@ -1,9 +1,9 @@
-import {SerializableObject, SerializableValues} from './index';
-import {NasonType}                              from './type';
+import {SerializableObject, SerializableValue} from './index';
+import {NasonType}                             from './type';
 import {unpack}                                 from './unpack';
 
 const decodeObject = (source: Uint8Array): SerializableObject => {
-    const entries: Array<[keyof SerializableObject, SerializableValues]> = [];
+    const entries: Array<[keyof SerializableObject, SerializableValue]> = [];
     let data: Uint8Array;
     let offset = 0;
 
@@ -34,7 +34,7 @@ const decodeNumber = (n: Uint8Array): number => {
     return val;
 };
 
-const decodeArray = (a: Uint8Array): Array<SerializableValues> => {
+const decodeArray = (a: Uint8Array): Array<SerializableValue> => {
     const [newOffset, array] = unpack(a);
     const size = decodeNumber(array);
     const res = [];
@@ -49,11 +49,15 @@ const decodeArray = (a: Uint8Array): Array<SerializableValues> => {
     return res;
 };
 
+const decodeBoolean = (b: Uint8Array): boolean => {
+    return b[0] === 1;
+};
+
 /**
  * Decodes a value
  * @param val
  */
-export const decode = (val: Uint8Array): SerializableValues => {
+export const decode = (val: Uint8Array): SerializableValue => {
     if (!val.length) {
         throw new Error('Input cannot be empty.');
     }
@@ -75,6 +79,12 @@ export const decode = (val: Uint8Array): SerializableValues => {
         }
         case NasonType.Array: {
             return decodeArray(data);
+        }
+        case NasonType.Boolean: {
+            return decodeBoolean(data);
+        }
+        case NasonType.Null: {
+            return null;
         }
         default: {
             throw new Error(`Unknown byte-set with id ${id}`);

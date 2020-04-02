@@ -1,9 +1,11 @@
 import {decode} from './decode';
 import {encode} from './encode';
 
-export type SerializableValues = object | string | number | SerializableObject | Array<SerializableValues>
+export type SerializableValue = object | string | number | boolean | null |
+    SerializableObject | Array<SerializableValue>
+
 export type SerializableObject = {
-    [key: string]: SerializableValues;
+    [key: string]: SerializableValue;
 }
 
 /**

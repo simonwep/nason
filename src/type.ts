@@ -3,7 +3,9 @@ export enum NasonType {
     Number = 2,
     Binary = 3,
     Object = 4,
-    Array = 5
+    Array = 5,
+    Boolean = 6,
+    Null = 7,
 }
 
 /**
@@ -26,7 +28,10 @@ export const typeFor = (val: unknown): NasonType | null => {
             return NasonType.Number;
         }
         case 'object': {
-            return NasonType.Object;
+            return val === null ? NasonType.Null : NasonType.Object;
+        }
+        case 'boolean': {
+            return NasonType.Boolean;
         }
     }
 

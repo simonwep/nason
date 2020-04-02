@@ -1,5 +1,5 @@
-import {SerializableObject, SerializableValues} from './index';
-import {pack}                                   from './pack';
+import {SerializableObject, SerializableValue} from './index';
+import {pack}                                  from './pack';
 import {NasonType, prependType, typeFor}        from './type';
 import {concat}                                 from './utils';
 
@@ -36,7 +36,7 @@ const encodeNumber = (n: number): Uint8Array => {
     return data;
 };
 
-const encodeArray = (a: Array<SerializableValues>): Uint8Array => {
+const encodeArray = (a: Array<SerializableValue>): Uint8Array => {
     let data = pack(encodeNumber(a.length));
 
     for (const val of a) {
@@ -49,11 +49,15 @@ const encodeArray = (a: Array<SerializableValues>): Uint8Array => {
     return data;
 };
 
+const encodeBoolean = (a: boolean): Uint8Array => {
+    return new Uint8Array([a ? 1 : 0]);
+};
+
 /**
  * Encodes a value
  * @param val
  */
-export const encode = (val: SerializableValues): Uint8Array => {
+export const encode = (val: SerializableValue): Uint8Array => {
     const type = typeFor(val);
 
     if (type === null) {
@@ -74,7 +78,13 @@ export const encode = (val: SerializableValues): Uint8Array => {
             return prependType(type, encodeObject(val as SerializableObject));
         }
         case NasonType.Array: {
-            return prependType(type, encodeArray(val as Array<SerializableValues>));
+            return prependType(type, encodeArray(val as Array<SerializableValue>));
+        }
+        case NasonType.Boolean: {
+            return prependType(type, encodeBoolean(val as boolean));
+        }
+        case NasonType.Null: {
+            return new Uint8Array([type]);
         }
     }
 };
