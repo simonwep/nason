@@ -7,7 +7,6 @@ const decodeObject = (source: Uint8Array): SerializableObject => {
     let data: Uint8Array;
     let offset = 0;
 
-    // TODO: Throw error on overflow?
     while (offset < source.length) {
         [offset, data] = unpack(source, offset);
         const str = decode(data) as string;
@@ -55,9 +54,12 @@ const decodeArray = (a: Uint8Array): Array<SerializableValues> => {
  * @param val
  */
 export const decode = (val: Uint8Array): SerializableValues => {
+    if (!val.length) {
+        throw new Error('Input cannot be empty.');
+    }
+
     const data = new Uint8Array(val.buffer, 1);
     const id = val[0] as NasonType;
-
     switch (id) {
         case NasonType.Binary: {
             return data as Uint8Array;

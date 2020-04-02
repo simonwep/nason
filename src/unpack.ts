@@ -17,6 +17,10 @@ export const unpack = (content: Uint8Array, offset = 0): [number, Uint8Array] =>
     }
 
     const nextOffset = offset + size;
+    if (nextOffset > content.length) {
+        throw new Error('Invalid chunk size.');
+    }
+
     return [
         nextOffset,
         new Uint8Array(content.slice(offset, nextOffset))
