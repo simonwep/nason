@@ -1,5 +1,6 @@
 import {deserialize, SerializableValues} from './index';
 import {NasonType}                       from './type';
+import {unpack}                          from './unpack';
 
 const decodeString = (s: Uint8Array): string => {
     return new TextDecoder().decode(s);
@@ -13,6 +14,21 @@ const decodeNumber = (n: Uint8Array): number => {
     }
 
     return val;
+};
+
+const decodeArray = (a: Uint8Array): Array<SerializableValues> => {
+    const [newOffset, array] = unpack(a);
+    const size = decodeNumber(array);
+    const res = [];
+
+    let data: Uint8Array;
+    let offset = newOffset;
+    for (let i = 0; i < size; i++) {
+        [offset, data] = unpack(a, offset);
+        res.push(decode(data));
+    }
+
+    return res;
 };
 
 /**
@@ -35,6 +51,9 @@ export const decode = (val: Uint8Array): SerializableValues => {
         }
         case NasonType.Object: {
             return deserialize(data);
+        }
+        case NasonType.Array: {
+            return decodeArray(data);
         }
         default: {
             throw new Error(`Unknown byte-set with id ${id}`);

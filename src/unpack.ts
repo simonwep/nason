@@ -4,7 +4,7 @@
  * @param content The source array.
  * @param offset The offset.
  */
-export const unpack = (content: Uint8Array, offset: number): [number, Uint8Array] => {
+export const unpack = (content: Uint8Array, offset = 0): [number, Uint8Array] => {
     const initialOffset = offset;
 
     // Read size of next chunk

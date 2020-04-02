@@ -19,6 +19,8 @@
         "ecmaVersion": 2018
     },
     "rules": {
-        "no-throw-literal": "error"
+        "no-throw-literal": "error",
+        "@typescript-eslint/no-use-before-define": "off",
+        "no-use-before-define": "off"
     }
 }

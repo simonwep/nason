@@ -2,7 +2,8 @@ export enum NasonType {
     String = 1,
     Number = 2,
     Binary = 3,
-    Object = 4
+    Object = 4,
+    Array = 5
 }
 
 /**
@@ -13,6 +14,8 @@ export enum NasonType {
 export const typeFor = (val: unknown): NasonType | null => {
     if (val instanceof Uint8Array) {
         return NasonType.Binary;
+    } else if (Array.isArray(val)) {
+        return NasonType.Array;
     }
 
     switch (typeof val) {
