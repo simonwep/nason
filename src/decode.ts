@@ -1,6 +1,6 @@
 import {SerializableObject, SerializableValue} from './index';
 import {NasonType}                             from './type';
-import {unpack}                                 from './unpack';
+import {unpack}                                from './unpack';
 
 const decodeObject = (source: Uint8Array): SerializableObject => {
     const entries: Array<[keyof SerializableObject, SerializableValue]> = [];

@@ -19,3 +19,6 @@ export const serialize = encode;
  * @param source
  */
 export const deserialize = decode;
+
+// Current version
+export const version = VERSION;

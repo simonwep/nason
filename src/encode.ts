@@ -1,7 +1,7 @@
 import {SerializableObject, SerializableValue} from './index';
 import {pack}                                  from './pack';
-import {NasonType, prependType, typeFor}        from './type';
-import {concat}                                 from './utils';
+import {NasonType, prependType, typeFor}       from './type';
+import {concat}                                from './utils';
 
 const encodeObject = (o: SerializableObject): Uint8Array => {
     let data = new Uint8Array(0);

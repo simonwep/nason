@@ -10,8 +10,8 @@
   <img alt="gzip size" src="https://img.badgesize.io/https://cdn.jsdelivr.net/npm/nason/lib/nason.min.js?compression=gzip&style=flat-square">
   <img alt="brotli size" src="https://img.badgesize.io/https://cdn.jsdelivr.net/npm/nason/lib/nason.min.js?compression=brotli&style=flat-square">
   <a href='https://coveralls.io/github/Simonwep/nason?branch=master'><img
-       src='https://img.shields.io/coveralls/github/Simonwep/nason?style=flat-square'
-       alt='Coverage Status'/></a>
+     src='https://img.shields.io/coveralls/github/Simonwep/nason?style=flat-square'
+     alt='Coverage Status'/></a>
   <a href="https://github.com/Simonwep/nason/actions"><img
      alt="Build Status"
      src="https://img.shields.io/github/workflow/status/Simonwep/nason/CI?style=flat-square"/></a>
@@ -51,7 +51,7 @@ $ yarn add nason
 
 Include directly via [jsdelivr](https://www.jsdelivr.com/package/npm/nason):
 ```html
-<script src="https://cdn.jsdelivr.net/npm/graceful-ws/lib/nason.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nason/lib/nason.min.js"></script>
 ```
 
 > The project itself is written in [typescript](https://www.typescriptlang.org/) hence ts-support is out of the box.
@@ -74,6 +74,15 @@ const enc = serialize({
 // Deserialize a previously serialized value
 const dec = deserialize(enc);
 console.log(dec); // Will be the same as initially passed into serialize
+```
+
+`nason` exports the following properties and functions:
+```js
+import {
+    deserialize, // Takes a single Uint8Array and decodes it
+    serialize, // Takes any supported value and converts it to a Uint8Array
+    version // Current version of this package
+} from 'nason';
 ```
 
 ### Data-types

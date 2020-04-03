@@ -38,8 +38,13 @@ module.exports = {
         new webpack.SourceMapDevToolPlugin({
             filename: `[name].min.js.map`
         }),
+
         new webpack.BannerPlugin({
             banner: `Nason ${version} MIT | https://github.com/Simonwep/nason`
+        }),
+
+        new webpack.DefinePlugin({
+            VERSION: JSON.stringify(version)
         })
     ],
 
