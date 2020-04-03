@@ -13,7 +13,6 @@ module.exports = {
         path: `${__dirname}/lib`,
         filename: '[name].min.js',
         library: 'Nason',
-        libraryExport: 'default',
         libraryTarget: 'umd'
     },
 
