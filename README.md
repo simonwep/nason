@@ -97,3 +97,7 @@ import {
 | `null`    | ✅ Fully supported                  |
 
 > `undefined` is not part of the json specification and will throw an error if you try to serialize it.
+
+---
+
+Logo / Icon provided by [Icons8](https://icons8.com).
