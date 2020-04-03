@@ -1,0 +1,28 @@
+name: CI
+
+on: ["push", "pull_request"]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Install dependencies and test
+        run: |
+          npm ci
+          npm run test:coverage
+          npm run build
+
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./coverage/lcov.info
