@@ -1,6 +1,6 @@
 module.exports = {
     coverageDirectory: 'coverage',
-    coverageReporters: ['text'],
+    coverageReporters: ['lcov', 'text'],
     testEnvironment: 'node',
     collectCoverageFrom: [
         'src/**/*.ts'

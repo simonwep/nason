@@ -21,9 +21,9 @@
     },
     "scripts": {
         "build": "webpack",
-        "lint": "eslint ./src/**/*.ts --fix",
-        "test:lint": "eslint ./src/**/*.ts ./test/**/*.ts",
         "test": "jest --runInBand",
+        "lint": "eslint ./src/**/*.ts ./test/**/*.ts",
+        "lint:fix": "eslint ./src/**/*.ts ./test/**/*.ts --fix",
         "test:watch": "jest --runInBand --watchAll",
         "test:coverage": "jest --runInBand --coverage"
     },
