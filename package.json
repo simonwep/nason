@@ -1,6 +1,6 @@
 {
     "name": "nason",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Ultra tiny json serializer",
     "main": "./lib/nason.min.js",
     "author": "Simon Reinisch <trash@reinisch.io>",
