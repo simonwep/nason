@@ -93,7 +93,6 @@ import {
 | `array`   | ✅ Fully supported                  |
 | `string`  | ✅ Fully supported                  |
 | `number`  | ⚠ Only signed integers; No floating-point number support |
-| `bigint`  | ⛔ Not supported |
 | `boolean` | ✅ Fully supported                  |
 | `null`    | ✅ Fully supported                  |
 
