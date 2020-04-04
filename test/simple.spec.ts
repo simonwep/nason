@@ -29,9 +29,14 @@ describe('Simple serialization', () => {
         });
     });
 
-    it('Should work with negative numbers as value', () => {
+    it('Should support signed integers', () => {
+        const maxInt = parseInt('1'.repeat(31), 2);
+        const minInt = -parseInt('1'.repeat(31), 2);
+
         testBidirectional({
-            'negative': -23
+            'negative': -23,
+            'smallest': minInt,
+            'biggest': maxInt
         });
     });
 

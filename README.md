@@ -92,7 +92,8 @@ import {
 | `object`  | ✅ Fully supported                  |
 | `array`   | ✅ Fully supported                  |
 | `string`  | ✅ Fully supported                  |
-| `number`  | ⚠ No floating-point number support |
+| `number`  | ⚠ Only signed integers; No floating-point number support |
+| `bigint`  | ⛔ Not supported |
 | `boolean` | ✅ Fully supported                  |
 | `null`    | ✅ Fully supported                  |
 
