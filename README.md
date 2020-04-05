@@ -3,7 +3,7 @@
 </h3>
 
 <h3 align="center">
-    Ultra tiny JSON serializer
+    Ultra tiny object serializer
 </h3>
 
 <p align="center">
@@ -92,11 +92,13 @@ import {
 | `object`  | ✅ Fully supported                  |
 | `array`   | ✅ Fully supported                  |
 | `string`  | ✅ Fully supported                  |
-| `number`  | ⚠ Only signed integers; No floating-point number support |
+| `number`  | ⚠ No floating-point number support |
 | `boolean` | ✅ Fully supported                  |
 | `null`    | ✅ Fully supported                  |
 
 > `undefined` is not part of the json specification and will throw an error if you try to serialize it.
+
+> I'm facing many problems supporting floating-point numbers. PR's and / or issues with ideas / suggestions are highly appreciated!
 
 ---
 
