@@ -21,23 +21,42 @@ const encodeString = (s: string): Uint8Array => {
     return new TextEncoder().encode(s);
 };
 
-const encodeNumber = (n: number): Uint8Array => {
-    const bits = n > 0 ? Math.floor(Math.log2(n) + 1) : n === 0 ? 1 : 32;
+const encodeInteger = (n: number): Uint8Array => {
+    const negative = n < 0;
+
+    n = Math.abs(n);
+    const bits = n ? Math.floor(Math.log2(n) + 1) + 1 : 0;
     const length = Math.ceil(bits / 8);
     const data = new Uint8Array(length);
 
     let offset = 0;
     while (n) {
-        data[offset] = n & 255;
-        n = n >>> 8;
+        const byte = (n & 255);
+        data[offset] = byte;
         offset++;
+
+        // Remove last 8 bit, we can't use bit-shifting as this only works
+        // with 32-bit numbers.
+        n = (n - byte) / 256;
+    }
+
+    if (offset < length) {
+        if (negative) {
+            data[offset] = 1;
+        }
+    } else {
+        data[offset - 1] = (data[offset - 1] << 1);
+
+        if (negative) {
+            data[offset - 1] += 1;
+        }
     }
 
     return data;
 };
 
 const encodeArray = (a: Array<SerializableValue>): Uint8Array => {
-    let data = pack(encodeNumber(a.length));
+    let data = pack(encodeInteger(a.length));
 
     for (const val of a) {
         data = concat(
@@ -71,8 +90,8 @@ export const encode = (val: SerializableValue): Uint8Array => {
         case NasonType.String: {
             return prependType(type, encodeString(val as string));
         }
-        case NasonType.Number: {
-            return prependType(type, encodeNumber(val as number));
+        case NasonType.Integer: {
+            return prependType(type, encodeInteger(val as number));
         }
         case NasonType.Object: {
             return prependType(type, encodeObject(val as SerializableObject));

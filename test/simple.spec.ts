@@ -23,20 +23,9 @@ describe('Simple serialization', () => {
         testBidirectional({
             'hello': 133,
             'abc': 'efg',
-            'random': 4,
+            'random': 2325,
             'empty': '',
             'empty2': 0
-        });
-    });
-
-    it('Should support signed integers', () => {
-        const maxInt = parseInt('1'.repeat(31), 2);
-        const minInt = -parseInt('1'.repeat(31), 2);
-
-        testBidirectional({
-            'negative': -23,
-            'smallest': minInt,
-            'biggest': maxInt
         });
     });
 

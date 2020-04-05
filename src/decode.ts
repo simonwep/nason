@@ -24,11 +24,19 @@ const decodeString = (s: Uint8Array): string => {
     return new TextDecoder().decode(s);
 };
 
-const decodeNumber = (n: Uint8Array): number => {
+const decodeInteger = (n: Uint8Array): number => {
+    const lastItem = n.length - 1;
     let val = 0;
 
-    for (let i = 0; i < n.length; i++) {
-        val += n[i] << (i * 8);
+    for (let i = 0; i < lastItem; i++) {
+        val += n[i] * (2 ** (i * 8));
+    }
+
+    const leastSignificantByte = n[lastItem];
+    val += (leastSignificantByte >>> 1) * (2 ** (lastItem * 8));
+
+    if (leastSignificantByte & 1) {
+        val *= -1;
     }
 
     return val;
@@ -36,7 +44,7 @@ const decodeNumber = (n: Uint8Array): number => {
 
 const decodeArray = (a: Uint8Array): Array<SerializableValue> => {
     const [newOffset, array] = unpack(a);
-    const size = decodeNumber(array);
+    const size = decodeInteger(array);
     const res = [];
 
     let data: Uint8Array;
@@ -71,8 +79,8 @@ export const decode = (val: Uint8Array): SerializableValue => {
         case NasonType.String: {
             return decodeString(data);
         }
-        case NasonType.Number: {
-            return decodeNumber(data);
+        case NasonType.Integer: {
+            return decodeInteger(data);
         }
         case NasonType.Object: {
             return decodeObject(data);

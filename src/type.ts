@@ -1,6 +1,6 @@
 export enum NasonType {
     String = 1,
-    Number = 2,
+    Integer = 2,
     Binary = 3,
     Object = 4,
     Array = 5,
@@ -25,7 +25,7 @@ export const typeFor = (val: unknown): NasonType | null => {
             return NasonType.String;
         }
         case 'number': {
-            return NasonType.Number;
+            return NasonType.Integer;
         }
         case 'object': {
             return val === null ? NasonType.Null : NasonType.Object;
