@@ -72,6 +72,7 @@ export const decode = (val: Uint8Array): SerializableValue => {
 
     const data = new Uint8Array(val.buffer, 1);
     const id = val[0] as NasonType;
+
     switch (id) {
         case NasonType.Binary: {
             return data as Uint8Array;

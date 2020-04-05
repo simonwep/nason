@@ -1,3 +1,5 @@
+import packageLockJson     from '../package-lock.json';
+import packageJson         from '../package.json';
 import {testBidirectional} from './utils';
 
 describe('Stress tests', () => {
@@ -7,5 +9,13 @@ describe('Stress tests', () => {
             const number = Math.floor(Math.random() * Number.MAX_SAFE_INTEGER);
             testBidirectional(negative ? -number : number);
         }
+    });
+
+    it('Test with package.json', () => {
+        testBidirectional(packageJson);
+    });
+
+    it('Test with package-lock.json', () => {
+        testBidirectional(packageLockJson);
     });
 });

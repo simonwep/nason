@@ -12,7 +12,7 @@ export const unpack = (content: Uint8Array, offset = 0): [number, Uint8Array] =>
     let value = 128;
     while (value & 128) {
         value = content[offset];
-        size += (value & 127) << (offset - initialOffset) * 7;
+        size += (value & 127) * 2 ** ((offset - initialOffset) * 7);
         offset++;
     }
 
