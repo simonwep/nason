@@ -8,7 +8,7 @@ describe('Invalid content', () => {
                 4, 2, 1, 97,
                 2
             ]));
-        }).toThrow();
+        }).toThrowError();
     });
 
     it('Should throw an error on invalid array-ids', () => {
@@ -17,13 +17,13 @@ describe('Invalid content', () => {
                 4, 2, 1, 97,
                 2, 99, 98
             ]));
-        }).toThrow();
+        }).toThrowError();
     });
 
     it('Should throw an error on non-serializable values', () => {
         expect(() => {
             serialize(undefined);
-        }).toThrow();
+        }).toThrowError();
     });
 
     it('Should throw an error on invalid chunk sizes', () => {
@@ -32,12 +32,12 @@ describe('Invalid content', () => {
                 4, 2, 1, 97,
                 55, 1, 98
             ]));
-        }).toThrow();
+        }).toThrowError();
     });
 
     it('Should throw an error on empty arrays', () => {
         expect(() => {
             deserialize(new Uint8Array());
-        }).toThrow();
+        }).toThrowError();
     });
 });

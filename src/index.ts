@@ -49,13 +49,45 @@ const encoders: EncoderList = [
  * Serializes the content of the object
  * @param value
  */
-export const serialize = (value: SerializableValue): Uint8Array => createEncoder(encoders)(value);
+export const serialize = createEncoder(encoders);
 
 /**
  * Deserializes a serialized object
  * @param data
  */
-export const deserialize = (data: Uint8Array): SerializableValue => createDecoder(encoders)(data);
+export const deserialize = createDecoder(encoders);
+
+export type WrappedEncoder = {
+    serialize: typeof serialize;
+    deserialize: typeof deserialize;
+};
+
+/**
+ * Injects custom-encoders
+ */
+export const use = (
+    extra: EncoderList
+): WrappedEncoder => {
+
+    // Validate id's
+    // TODO: Unlimited id's?
+    for (const [newId] of extra) {
+        if (typeof newId !== 'number' || newId % 1) {
+            throw new Error('Id must be an integer.');
+        }
+
+        for (const [id] of encoders) {
+            if (newId === id) {
+                throw new Error(`Id ${newId} is already used internally`);
+            }
+        }
+    }
+
+    return {
+        serialize: createEncoder([...extra, ...encoders]),
+        deserialize: createDecoder([...extra, ...encoders])
+    };
+};
 
 // Current version
 export const version = VERSION;
