@@ -25,7 +25,8 @@
         "lint": "eslint ./src/**/*.ts ./test/**/*.ts",
         "lint:fix": "eslint ./src/**/*.ts ./test/**/*.ts --fix",
         "test:watch": "jest --runInBand --watchAll",
-        "test:coverage": "jest --runInBand --coverage"
+        "test:coverage": "jest --runInBand --coverage",
+        "ci:dryrun": "npm run lint:fix && npm run test && npm run build"
     },
     "files": [
         "src",

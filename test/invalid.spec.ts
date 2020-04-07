@@ -1,5 +1,4 @@
-import {deserialize} from '../src';
-import {encode}      from '../src/encode';
+import {deserialize, serialize} from '../src';
 
 describe('Invalid content', () => {
 
@@ -23,7 +22,7 @@ describe('Invalid content', () => {
 
     it('Should throw an error on non-serializable values', () => {
         expect(() => {
-            encode(undefined);
+            serialize(undefined);
         }).toThrow();
     });
 
