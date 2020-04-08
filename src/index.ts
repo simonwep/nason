@@ -88,4 +88,4 @@ export const use = (
 };
 
 // Current version
-export const version = typeof VERSION === 'undefined' ? '?' : VERSION;
+export const version = VERSION;
