@@ -1,6 +1,19 @@
-import {deserialize, SerializableValue, serialize} from '../src';
+import {deserialize, Encoder, SerializableValue, serialize, use} from '../src';
 
 export const testBidirectional = (data: SerializableValue): void => {
+    const serialized = serialize(data);
+    expect(serialized).toBeInstanceOf(Uint8Array);
+    expect(deserialize(serialized)).toEqual(data);
+};
+
+export const testCustomEncoder = (
+    encoder: Encoder<unknown>,
+    data: SerializableValue
+): void => {
+    const {serialize, deserialize} = use([
+        [Math.floor(Math.random() * 128), encoder]
+    ]);
+
     const serialized = serialize(data);
     expect(serialized).toBeInstanceOf(Uint8Array);
     expect(deserialize(serialized)).toEqual(data);

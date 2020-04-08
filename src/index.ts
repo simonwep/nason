@@ -15,20 +15,20 @@ export type SerializableObject = {
     [key: string]: SerializableValue;
 };
 
-export type EncoderFunction = <Source extends SerializableValue> (
+export type EncoderFunction<Source> = (
     value: Source,
     encoder: (value: SerializableValue) => Uint8Array
 ) => Uint8Array;
 
-export type DecoderFunction = <Result> (
+export type DecoderFunction<Result> = (
     source: Uint8Array,
     decoder: (value: Uint8Array) => SerializableValue
 ) => Result;
 
 export interface Encoder<T> {
     test: (v: unknown) => boolean;
-    encode: EncoderFunction;
-    decode: DecoderFunction;
+    encode: EncoderFunction<T>;
+    decode: DecoderFunction<T>;
 }
 
 export type EncoderList = Array<[number, Encoder<unknown>]>;
@@ -70,17 +70,15 @@ export const use = (
 ): WrappedEncoder => {
 
     // Validate id's
-    // TODO: Unlimited id's?
-    for (const [newId] of extra) {
-        if (typeof newId !== 'number' || newId % 1) {
-            throw new Error('Id must be an integer.');
+    for (const encoder of extra) {
+        const id = encoder[0];
+
+        // Validate ID
+        if (typeof id !== 'number' || id % 1 || id < 0 || id > 128) {
+            throw new Error('Id must be an integer and between 0 and 128, both inclusive.');
         }
 
-        for (const [id] of encoders) {
-            if (newId === id) {
-                throw new Error(`Id ${newId} is already used internally`);
-            }
-        }
+        encoder[0] += 127;
     }
 
     return {
@@ -90,4 +88,4 @@ export const use = (
 };
 
 // Current version
-export const version = VERSION;
+export const version = typeof VERSION === 'undefined' ? '?' : VERSION;

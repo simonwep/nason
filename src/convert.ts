@@ -31,7 +31,7 @@ export const createDecoder = (encoders: EncoderList) => function decode(
 
     for (const [id, encoder] of encoders) {
         if (id === entryId) {
-            return encoder.decode(data, decode);
+            return encoder.decode(data, decode) as SerializableValue;
         }
     }
 
