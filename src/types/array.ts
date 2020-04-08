@@ -21,14 +21,14 @@ export default {
     },
 
     decode(a: Uint8Array, decode): Array<SerializableValue> {
-        const [newOffset, array] = unpack(a);
+        const [array, newOffset]= unpack(a);
         const size = integer.decode(array, decode);
         const res = [];
 
         let data: Uint8Array;
         let offset = newOffset;
         for (let i = 0; i < size; i++) {
-            [offset, data] = unpack(a, offset);
+            [data, offset] = unpack(a, offset);
             res.push(decode(data));
         }
 

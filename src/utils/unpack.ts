@@ -1,10 +1,10 @@
 /**
  * Unpacks a piece of data from the given array at the specified offset.
- * Returns a new offset and the extracted data.
+ * Returns the extracted data and the next offset.
  * @param content The source array.
  * @param offset The offset.
  */
-export const unpack = (content: Uint8Array, offset = 0): [number, Uint8Array] => {
+export const unpack = (content: Uint8Array, offset = 0): [Uint8Array, number] => {
     const initialOffset = offset;
 
     // Read size of next chunk
@@ -22,7 +22,7 @@ export const unpack = (content: Uint8Array, offset = 0): [number, Uint8Array] =>
     }
 
     return [
-        nextOffset,
-        content.slice(offset, nextOffset)
+        content.slice(offset, nextOffset),
+        nextOffset
     ];
 };

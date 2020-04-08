@@ -7,6 +7,9 @@ import {Internals}                    from './types/internals';
 import nullish                        from './types/nullish';
 import object                         from './types/object';
 import string                         from './types/string';
+import {concat}                       from './utils/concat';
+import {unpack}                       from './utils/unpack';
+import {pack}                         from './utils/pack';
 
 export type SerializableValue = object | string | number | boolean | null |
     SerializableObject | Array<SerializableValue>;
@@ -85,6 +88,11 @@ export const use = (
         serialize: createEncoder([...extra, ...encoders]),
         deserialize: createDecoder([...extra, ...encoders])
     };
+};
+
+// Expose utils
+export const utils = {
+    pack, unpack, concat
 };
 
 // Current version

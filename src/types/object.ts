@@ -28,10 +28,10 @@ export default {
         let offset = 0;
 
         while (offset < source.length) {
-            [offset, data] = unpack(source, offset);
+            [data, offset] = unpack(source, offset);
             const str = decode(data) as string;
 
-            [offset, data] = unpack(source, offset);
+            [data, offset] = unpack(source, offset);
             entries.push(
                 [str, decode(data)]
             );
