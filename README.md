@@ -34,7 +34,7 @@
 > Disclaimer: This library is part of a bigger project and it's goal is to be as small as possible (I don't want to use the >200kb bundle of [bson](https://github.com/mongodb/js-bson)). This lib is only around 4kb, uncompressed.
 > It's only supposed to work within JS itself and not all data-types are implemented so far (see types-table at the bottom).
 >
-> The name is based on nashorn which is the german word for rhino.
+> The name is based on nashorn which is the German word for rhino.
 
 
 ### Installation
@@ -85,6 +85,8 @@ import {
 } from 'nason';
 ```
 
+> There's even more if you want to develop [plugins](./doc/plugins)!
+
 ### Data-types
 
 | Data-type | Status                             |
@@ -98,7 +100,11 @@ import {
 
 > `undefined` is not part of the json specification and will throw an error if you try to serialize it.
 
-> I'm facing many problems supporting floating-point numbers. PR's and / or issues with ideas / suggestions are highly appreciated!
+> I'm facing several problems supporting floating-point numbers. PR's and / or issues with ideas / suggestions are highly appreciated!
+
+### Plugins
+
+It's possible to write custom encoders for data-types not supported out-of-the-box. Head to [plugins](./doc/plugins) to get started! 
 
 ---
 
