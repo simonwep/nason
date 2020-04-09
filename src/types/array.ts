@@ -21,7 +21,7 @@ export default {
     },
 
     decode(a: Uint8Array, decode): Array<SerializableValue> {
-        const [array, newOffset]= unpack(a);
+        const [array, newOffset] = unpack(a);
         const size = integer.decode(array, decode);
         const res = [];
 

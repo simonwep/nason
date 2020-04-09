@@ -8,8 +8,8 @@ import nullish                        from './types/nullish';
 import object                         from './types/object';
 import string                         from './types/string';
 import {concat}                       from './utils/concat';
-import {unpack}                       from './utils/unpack';
 import {pack}                         from './utils/pack';
+import {unpack}                       from './utils/unpack';
 
 export type SerializableValue = object | string | number | boolean | null |
     SerializableObject | Array<SerializableValue>;
@@ -92,7 +92,9 @@ export const use = (
 
 // Expose utils
 export const utils = {
-    pack, unpack, concat
+    pack,
+    unpack,
+    concat
 };
 
 // Current version
