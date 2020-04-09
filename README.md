@@ -36,25 +36,27 @@
 >
 > The name is based on nashorn which is the German word for rhino.
 
-
 ### Installation
 
-Install via npm:
+Install via `npm ` or `yarn`:
+
 ```shell
 $ npm install nason
-```
-
-Install via yarn:
-```shell
+# or
 $ yarn add nason
 ```
 
 Include directly via [jsdelivr](https://www.jsdelivr.com/package/npm/nason):
+
 ```html
 <script src="https://cdn.jsdelivr.net/npm/nason/lib/nason.min.js"></script>
 ```
 
-> The project itself is written in [typescript](https://www.typescriptlang.org/) hence ts-support is out of the box.
+Using [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules):
+
+````js
+import {...} from 'https://cdn.jsdelivr.net/npm/nason/lib/nason.min.mjs' 
+````
 
 ### Usage
 
