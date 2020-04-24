@@ -55,7 +55,7 @@ Include directly via [jsdelivr](https://www.jsdelivr.com/package/npm/nason):
 Using [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules):
 
 ````js
-import {...} from 'https://cdn.jsdelivr.net/npm/nason/lib/nason.min.mjs' 
+import {...} from 'https://cdn.jsdelivr.net/npm/nason/lib/nason.min.mjs'
 ````
 
 ### Usage
@@ -106,8 +106,4 @@ import {
 
 ### Plugins
 
-It's possible to write custom encoders for data-types not supported out-of-the-box. Head to [plugins](./doc/plugins) to get started! 
-
----
-
-Logo / Icon provided by [Icons8](https://icons8.com).
+It's possible to write custom encoders for data-types not supported out-of-the-box. Head to [plugins](./doc/plugins) to get started!
