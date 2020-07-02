@@ -31,7 +31,7 @@
 
 
 
-> Disclaimer: This library is part of a bigger project and it's goal is to be as small as possible (I don't want to use the >200kb bundle of [bson](https://github.com/mongodb/js-bson)). This lib is only around 4kb, uncompressed.
+> Disclaimer: This library is part of a bigger project and its goal is to be as small as possible (I don't want to use the >200kb bundle of [bson](https://github.com/mongodb/js-bson)). This lib is only around 4kb, uncompressed.
 > It's only supposed to work within JS itself and not all data-types are implemented so far (see types-table at the bottom).
 >
 > The name is based on nashorn which is the German word for rhino.
@@ -63,7 +63,7 @@ import {...} from 'https://cdn.jsdelivr.net/npm/nason/lib/nason.min.mjs'
 ```js
 import {deserialize, serialize} from 'nason';
 
-// Serialize something, you'll get a Uint8Array in return.
+// Serialize something; you'll get a Uint8Array in return.
 // You can pass any kind of supported data-type you want to serialize.
 const enc = serialize({
     'hello': 'world',
@@ -73,7 +73,7 @@ const enc = serialize({
 
 // ... save enc to file or do whatever you want with it
 
-// Deserialize a previously serialized value
+// Deserialize a previously-serialized value
 const dec = deserialize(enc);
 console.log(dec); // Will be the same as initially passed into serialize
 ```
@@ -100,9 +100,9 @@ import {
 | `boolean` | ✅ Fully supported                  |
 | `null`    | ✅ Fully supported                  |
 
-> `undefined` is not part of the json specification and will throw an error if you try to serialize it.
+> `undefined` is not part of the JSON specification and will throw an error if you try to serialize it.
 
-> I'm facing several problems supporting floating-point numbers. PR's and / or issues with ideas / suggestions are highly appreciated!
+> I'm facing several problems supporting floating-point numbers. PRs and/or issues with ideas/suggestions are highly appreciated!
 
 ### Plugins
 
