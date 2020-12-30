@@ -66,4 +66,5 @@ typings/
 *.iml
 .idea
 .psd
+.test
 lib

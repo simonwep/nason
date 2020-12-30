@@ -2,7 +2,8 @@
     "parser": "@typescript-eslint/parser",
     "env": {
         "browser": true,
-        "jest": true
+        "jest": true,
+        "node": true
     },
     "extends": [
         "eslint:recommended",
@@ -13,14 +14,17 @@
     "plugins": [
         "@typescript-eslint"
     ],
+    "globals": {
+        "VERSION": true
+    },
     "parserOptions": {
         "project": "./tsconfig.json",
         "sourceType": "module",
         "ecmaVersion": 2018
     },
     "rules": {
-        "no-throw-literal": "error",
         "@typescript-eslint/no-use-before-define": "off",
-        "no-use-before-define": "off"
+        "no-use-before-define": "off",
+        "no-unused-vars": "off"
     }
 }

@@ -1,5 +1,5 @@
-import packageLockJson     from '../package-lock.json';
-import packageJson         from '../package.json';
+import packageLockJson from '../package-lock.json';
+import packageJson from '../package.json';
 import {testBidirectional} from './utils';
 
 describe('Stress tests', () => {

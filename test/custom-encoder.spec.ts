@@ -1,5 +1,5 @@
 import {Encoder, SerializableValue, use, utils} from '../src';
-import {testCustomEncoder}                      from './utils';
+import {testCustomEncoder} from './utils';
 
 describe('Implementing a custom encoder', () => {
 

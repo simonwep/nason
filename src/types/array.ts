@@ -1,8 +1,8 @@
 import {Encoder, SerializableValue} from '../index';
-import {concat}                     from '../utils/concat';
-import {pack}                       from '../utils/pack';
-import {unpack}                     from '../utils/unpack';
-import integer                      from './integer';
+import {concat} from '../utils/concat';
+import {pack} from '../utils/pack';
+import {unpack} from '../utils/unpack';
+import integer from './integer';
 
 export default {
     test: Array.isArray,

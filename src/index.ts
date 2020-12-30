@@ -1,17 +1,17 @@
 import {createDecoder, createEncoder} from './convert';
-import array                          from './types/array';
-import binary                         from './types/binary';
-import boolean                        from './types/boolean';
-import integer                        from './types/integer';
-import {Internals}                    from './types/internals';
-import nullish                        from './types/nullish';
-import object                         from './types/object';
-import string                         from './types/string';
-import {concat}                       from './utils/concat';
-import {pack}                         from './utils/pack';
-import {unpack}                       from './utils/unpack';
+import array from './types/array';
+import binary from './types/binary';
+import boolean from './types/boolean';
+import integer from './types/integer';
+import {Internals} from './types/internals';
+import nullish from './types/nullish';
+import object from './types/object';
+import string from './types/string';
+import {concat} from './utils/concat';
+import {pack} from './utils/pack';
+import {unpack} from './utils/unpack';
 
-export type SerializableValue = object | string | number | boolean | null |
+export type SerializableValue = Record<string, unknown> | string | number | boolean | null |
     SerializableObject | Array<SerializableValue>;
 
 export type SerializableObject = {
@@ -34,7 +34,8 @@ export interface Encoder<T> {
     decode: DecoderFunction<T>;
 }
 
-export type EncoderList = Array<[number, Encoder<unknown>]>;
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export type EncoderList = Array<[number, Encoder<any>]>;
 
 // Default encoders, order is important because object catches almost everything
 // except primitives.

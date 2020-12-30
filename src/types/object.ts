@@ -1,7 +1,7 @@
 import {Encoder, SerializableObject, SerializableValue} from '../index';
-import {concat}                                         from '../utils/concat';
-import {pack}                                           from '../utils/pack';
-import {unpack}                                         from '../utils/unpack';
+import {concat} from '../utils/concat';
+import {pack} from '../utils/pack';
+import {unpack} from '../utils/unpack';
 
 export default {
     test(v) {

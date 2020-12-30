@@ -6,8 +6,9 @@ export const testBidirectional = (data: SerializableValue): void => {
     expect(deserialize(serialized)).toEqual(data);
 };
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const testCustomEncoder = (
-    encoder: Encoder<unknown>,
+    encoder: Encoder<any>,
     data: SerializableValue
 ): void => {
     const {serialize, deserialize} = use([
