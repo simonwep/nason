@@ -1,13 +1,13 @@
 import {createDecoder, createEncoder} from './convert';
-import array from './types/array';
-import binary from './types/binary';
-import boolean from './types/boolean';
-import double from './types/double';
-import integer from './types/integer';
+import {arrayEncoder} from './types/array';
+import {binaryEncoder} from './types/binary';
+import {booleanEncoder} from './types/boolean';
+import {doubleEncoder} from './types/double';
+import {integerEncoder} from './types/integer';
 import {Internals} from './types/internals';
-import nullish from './types/nullish';
-import object from './types/object';
-import string from './types/string';
+import {nullEncoder} from './types/null';
+import {objectEncoder} from './types/object';
+import {stringEncoder} from './types/string';
 import {concat} from './utils/concat';
 import {pack} from './utils/pack';
 import {unpack} from './utils/unpack';
@@ -41,14 +41,14 @@ export type EncoderList = Array<[number, Encoder<any>]>;
 // Default encoders, order is important because object catches almost everything
 // except primitives.
 const encoders: EncoderList = [
-    [Internals.Boolean, boolean],
-    [Internals.Double, double],
-    [Internals.Integer, integer],
-    [Internals.Null, nullish],
-    [Internals.String, string],
-    [Internals.Binary, binary],
-    [Internals.Array, array],
-    [Internals.Object, object]
+    [Internals.Boolean, booleanEncoder],
+    [Internals.Double, doubleEncoder],
+    [Internals.Integer, integerEncoder],
+    [Internals.Null, nullEncoder],
+    [Internals.String, stringEncoder],
+    [Internals.Binary, binaryEncoder],
+    [Internals.Array, arrayEncoder],
+    [Internals.Object, objectEncoder]
 ];
 
 /**

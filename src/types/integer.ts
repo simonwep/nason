@@ -1,6 +1,6 @@
 import {Encoder} from '../index';
 
-export default {
+export const integerEncoder: Encoder<number> = {
     test(v) {
         return typeof v === 'number' && v % 1 === 0;
     },
@@ -56,4 +56,4 @@ export default {
 
         return val;
     }
-} as Encoder<number>;
+};

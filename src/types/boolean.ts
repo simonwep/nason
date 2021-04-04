@@ -1,6 +1,6 @@
 import {Encoder} from '../index';
 
-export default {
+export const booleanEncoder: Encoder<boolean> = {
     test(v) {
         return typeof v === 'boolean';
     },
@@ -12,4 +12,4 @@ export default {
     decode(b: Uint8Array): boolean {
         return b[0] === 1;
     }
-} as Encoder<boolean>;
+};

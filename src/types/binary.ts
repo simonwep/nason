@@ -1,6 +1,6 @@
 import {Encoder} from '../index';
 
-export default {
+export const binaryEncoder: Encoder<Uint8Array> = {
     test(v) {
         return v instanceof Uint8Array;
     },
@@ -12,4 +12,4 @@ export default {
     decode(val: Uint8Array): Uint8Array {
         return val;
     }
-} as Encoder<Uint8Array>;
+};

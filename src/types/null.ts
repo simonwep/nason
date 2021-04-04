@@ -1,6 +1,6 @@
 import {Encoder} from '../index';
 
-export default {
+export const nullEncoder: Encoder<null> = {
     test(v) {
         return v === null;
     },
@@ -12,4 +12,4 @@ export default {
     decode(): null {
         return null;
     }
-} as Encoder<null>;
+};

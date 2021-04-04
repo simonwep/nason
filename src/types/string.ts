@@ -1,6 +1,6 @@
 import {Encoder} from '../index';
 
-export default {
+export const stringEncoder: Encoder<string> = {
     test(v) {
         return typeof v === 'string';
     },
@@ -12,4 +12,4 @@ export default {
     decode(s: Uint8Array): string {
         return new TextDecoder().decode(s);
     }
-} as Encoder<string>;
+};

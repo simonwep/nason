@@ -2,13 +2,13 @@ import {Encoder, SerializableValue} from '../index';
 import {concat} from '../utils/concat';
 import {pack} from '../utils/pack';
 import {unpack} from '../utils/unpack';
-import integer from './integer';
+import {integerEncoder} from './integer';
 
-export default {
+export const arrayEncoder: Encoder<Array<SerializableValue>> = {
     test: Array.isArray,
 
     encode(a: Array<SerializableValue>, encode): Uint8Array {
-        let data = pack(integer.encode(a.length, encode));
+        let data = pack(integerEncoder.encode(a.length, encode));
 
         for (const val of a) {
             data = concat(
@@ -22,7 +22,7 @@ export default {
 
     decode(a: Uint8Array, decode): Array<SerializableValue> {
         const [array, newOffset] = unpack(a);
-        const size = integer.decode(array, decode);
+        const size = integerEncoder.decode(array, decode);
         const res = [];
 
         let data: Uint8Array;
@@ -34,4 +34,4 @@ export default {
 
         return res;
     }
-} as Encoder<Array<SerializableValue>>;
+};

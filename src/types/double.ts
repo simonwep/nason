@@ -1,6 +1,6 @@
 import {Encoder} from '../index';
 
-export default {
+export const doubleEncoder: Encoder<number> = {
     test(v) {
         return typeof v === 'number' && v % 1 !== 0;
     },
@@ -25,4 +25,4 @@ export default {
             return doubleView[0];
         };
     })()
-} as Encoder<number>;
+};

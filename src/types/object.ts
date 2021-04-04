@@ -3,7 +3,7 @@ import {concat} from '../utils/concat';
 import {pack} from '../utils/pack';
 import {unpack} from '../utils/unpack';
 
-export default {
+export const objectEncoder: Encoder<SerializableObject> = {
     test(v) {
         return typeof v === 'object';
     },
@@ -39,5 +39,5 @@ export default {
 
         return Object.fromEntries(entries);
     }
-} as Encoder<SerializableObject>;
+};
 
