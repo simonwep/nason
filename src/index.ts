@@ -2,6 +2,7 @@ import {createDecoder, createEncoder} from './convert';
 import array from './types/array';
 import binary from './types/binary';
 import boolean from './types/boolean';
+import double from './types/double';
 import integer from './types/integer';
 import {Internals} from './types/internals';
 import nullish from './types/nullish';
@@ -41,6 +42,7 @@ export type EncoderList = Array<[number, Encoder<any>]>;
 // except primitives.
 const encoders: EncoderList = [
     [Internals.Boolean, boolean],
+    [Internals.Double, double],
     [Internals.Integer, integer],
     [Internals.Null, nullish],
     [Internals.String, string],

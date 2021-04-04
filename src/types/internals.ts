@@ -6,4 +6,5 @@ export enum Internals {
     Array = 5,
     Boolean = 6,
     Null = 7,
+    Double = 8
 }

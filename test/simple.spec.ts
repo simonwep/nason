@@ -10,6 +10,8 @@ describe('Simple serialization', () => {
         testBidirectional({a: 'b'});
         testBidirectional(123);
         testBidirectional(-123);
+        testBidirectional(-123.123);
+        testBidirectional(-6292704.951540948);
     });
 
     it('Should serialize and deserialize a simple string:string map', () => {

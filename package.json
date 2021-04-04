@@ -22,6 +22,7 @@
         "build:watch": "cross-env NODE_ENV=development rollup -c rollup.config.js --watch",
         "lint": "eslint ./src/**/*.ts ./test/**/*.ts",
         "lint:fix": "npm run lint -- --fix",
+        "test": "jest --runInBand",
         "test:watch": "jest --runInBand --watchAll",
         "test:coverage": "jest --runInBand --coverage",
         "ci:dryrun": "npm run lint:fix && npm run test && npm run build"
