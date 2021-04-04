@@ -91,18 +91,16 @@ import {
 
 ### Data-types
 
-| Data-type | Status                             |
-| --------- | ---------------------------------- |
-| `object`  | ✅ Fully supported                  |
-| `array`   | ✅ Fully supported                  |
-| `string`  | ✅ Fully supported                  |
-| `number`  | ⚠ No floating-point number support |
-| `boolean` | ✅ Fully supported                  |
-| `null`    | ✅ Fully supported                  |
+| Data-type | Status |
+| --------- | ------ |
+| `object`  | ✅ Fully supported |
+| `array`   | ✅ Fully supported |
+| `string`  | ✅ Fully supported |
+| `number`  | ✅ Fully supported |
+| `boolean` | ✅ Fully supported |
+| `null`    | ✅ Fully supported |
 
 > `undefined` is not part of the JSON specification and will throw an error if you try to serialize it.
-
-> I'm facing several problems supporting floating-point numbers. PRs and/or issues with ideas/suggestions are highly appreciated!
 
 ### Plugins
 
