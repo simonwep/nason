@@ -5,19 +5,24 @@ export default {
         return typeof v === 'number' && v % 1 !== 0;
     },
 
-    encode(n: number): Uint8Array {
+    encode: (() => {
         const buffer = new ArrayBuffer(8);
         const doubleView = new Float64Array(buffer);
-        doubleView[0] = n;
-        return new Uint8Array(buffer);
-    },
 
-    decode(n: Uint8Array): number {
+        return (n: number): Uint8Array => {
+            doubleView[0] = n;
+            return new Uint8Array(buffer);
+        };
+    })(),
+
+    decode: (() => {
         const buffer = new ArrayBuffer(8);
         const doubleView = new Float64Array(buffer);
         const uIntBuffer = new Uint8Array(buffer);
-        uIntBuffer.set(n, 0);
 
-        return doubleView[0];
-    }
+        return (n: Uint8Array): number => {
+            uIntBuffer.set(n, 0);
+            return doubleView[0];
+        };
+    })()
 } as Encoder<number>;
