@@ -12,6 +12,7 @@ export default {
         ts(),
         (production && terser()),
         replace({
+            preventAssignment: true,
             VERSION: JSON.stringify(pkg.version)
         })
     ],
