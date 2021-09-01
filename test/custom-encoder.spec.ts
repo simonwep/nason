@@ -82,6 +82,10 @@ describe('Implementing a custom encoder', () => {
         );
     });
 
+    it('Should pack an empty array', () => {
+        expect(utils.pack(new Uint8Array())).toEqual(new Uint8Array([0]));
+    });
+
     it('Should throw an error if id is invalid', () => {
         expect(() => use([
             [129, null]

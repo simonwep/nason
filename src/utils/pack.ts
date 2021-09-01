@@ -4,7 +4,7 @@
  */
 export const pack = (content: Uint8Array): Uint8Array => {
     const contentSize = content.length;
-    const sizeSpace = Math.ceil(Math.floor(Math.log2(contentSize) + 1) / 7);
+    const sizeSpace = Math.ceil(Math.floor(Math.log2(contentSize || 1) + 1) / 7);
     const target = new Uint8Array(sizeSpace + contentSize);
 
     // Write size of content and the content itself
