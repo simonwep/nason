@@ -1,8 +1,9 @@
+import {describe, test} from 'vitest';
 import {testBidirectional} from './utils';
 
 describe('Nested serialization', () => {
 
-    it('Should serialize and deserialize a simple, nested object', () => {
+    test('Should serialize and deserialize a simple, nested object', () => {
         testBidirectional({
             'hello': 'world',
             'abc': {
@@ -11,7 +12,7 @@ describe('Nested serialization', () => {
         });
     });
 
-    it('Should serialize and deserialize deeply nested objects', () => {
+    test('Should serialize and deserialize deeply nested objects', () => {
         testBidirectional({
             'hello': 'world',
             'abc': {

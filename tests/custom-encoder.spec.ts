@@ -1,9 +1,10 @@
+import {describe, test, expect} from 'vitest';
 import {Encoder, SerializableValue, use, utils} from '../src';
 import {testCustomEncoder} from './utils';
 
 describe('Implementing a custom encoder', () => {
 
-    it('Encode undefined as "undefined"', () => {
+    test('Encode undefined as "undefined"', () => {
         testCustomEncoder(
             {
                 test: (v): boolean => typeof v === 'undefined',
@@ -14,7 +15,7 @@ describe('Implementing a custom encoder', () => {
         );
     });
 
-    it('Encode node.js buffers', () => {
+    test('Encode node.js buffers', () => {
         testCustomEncoder(
             {
                 test: (v): boolean => v instanceof Buffer,
@@ -31,7 +32,7 @@ describe('Implementing a custom encoder', () => {
         );
     });
 
-    it('Encode node.js buffers', () => {
+    test('Encode node.js buffers', () => {
         testCustomEncoder(
             {
                 test(value) {
@@ -82,25 +83,23 @@ describe('Implementing a custom encoder', () => {
         );
     });
 
-    it('Should pack an empty array', () => {
+    test('Should pack an empty array', () => {
         expect(utils.pack(new Uint8Array())).toEqual(new Uint8Array([0]));
     });
 
-    it('Should throw an error if id is invalid', () => {
+    test('Should throw an error if id is invalid', () => {
+        const dummy = {} as unknown as Encoder<any>;
+
         expect(() => use([
-            [129, null]
+            [129, dummy]
         ])).toThrowError();
 
         expect(() => use([
-            [-1, null]
+            [-1, dummy]
         ])).toThrowError();
 
         expect(() => use([
-            ['1' as unknown as number, null]
-        ])).toThrowError();
-
-        expect(() => use([
-            [15.34, null]
+            [15.34, dummy]
         ])).toThrowError();
     });
 });

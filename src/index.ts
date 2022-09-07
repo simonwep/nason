@@ -72,25 +72,23 @@ export type WrappedEncoder = {
  * Injects custom-encoders
  */
 export const use = (
-    extra: EncoderList
+    list: EncoderList
 ): WrappedEncoder => {
 
     // Validate id's
-    for (const encoder of extra) {
+    for (const encoder of list) {
         const id = encoder[0];
 
         // Validate ID
-        if (typeof id !== 'number' || id % 1 || id < 0 || id > 128) {
+        if (id % 1 || id < 0 || id > 128) {
             throw new Error('Id must be an integer and between 0 and 128, both inclusive.');
         }
 
         encoder[0] += 127;
     }
 
-    return {
-        serialize: createEncoder([...extra, ...encoders]),
-        deserialize: createDecoder([...extra, ...encoders])
-    };
+    const all = [...list, ...encoders];
+    return {serialize: createEncoder(all), deserialize: createDecoder(all)};
 };
 
 // Expose utils

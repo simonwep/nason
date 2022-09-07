@@ -31,7 +31,8 @@
 
 
 
-> Disclaimer: This library is part of a bigger project and its goal is to be as small as possible (I don't want to use the >200kb bundle of [bson](https://github.com/mongodb/js-bson)). This lib is only around 4kb, uncompressed.
+> Disclaimer: This library is part of a bigger project and its goal is to be as small as possible (I don't want to use the >200kb bundle
+> of [bson](https://github.com/mongodb/js-bson)). This lib is only around 4kb, uncompressed.
 > It's only supposed to work within JS itself and not all data-types are implemented so far (see types-table at the bottom).
 >
 > The name is based on nashorn which is the German word for rhino.
@@ -49,13 +50,19 @@ $ yarn add nason
 Include directly via [jsdelivr](https://www.jsdelivr.com/package/npm/nason):
 
 ```html
+
 <script src="https://cdn.jsdelivr.net/npm/nason/lib/nason.min.js"></script>
 ```
 
 Using [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules):
 
 ````js
-import {...} from 'https://cdn.jsdelivr.net/npm/nason/lib/nason.min.mjs'
+import {
+
+...
+}
+from
+'https://cdn.jsdelivr.net/npm/nason/lib/nason.min.mjs'
 ````
 
 ### Usage
@@ -79,6 +86,7 @@ console.log(dec); // Will be the same as initially passed into serialize
 ```
 
 `nason` exports the following properties and functions:
+
 ```js
 import {
     deserialize, // Takes a single Uint8Array and decodes it
@@ -87,7 +95,7 @@ import {
 } from 'nason';
 ```
 
-> There's even more if you want to develop [plugins](./doc/plugins)!
+> There's even more if you want to develop [plugins](docs/plugins)!
 
 ### Data-types
 
@@ -101,7 +109,9 @@ import {
 | `null`    | ✅ Fully supported |
 
 > `undefined` is not part of the JSON specification and will throw an error if you try to serialize it.
+> You can, however, [add support for it](docs/plugins/undefined.md) ;)
 
 ### Plugins
 
-It's possible to write custom encoders for data-types not supported out-of-the-box. Head to [plugins](./doc/plugins) to get started!
+It's possible to write custom encoders for data-types not supported out-of-the-box.
+Head to [plugins](docs/plugins) to get started!

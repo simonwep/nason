@@ -1,8 +1,9 @@
+import {describe, test} from 'vitest';
 import {testBidirectional} from './utils';
 
 describe('Arrays serialization', () => {
 
-    it('Should serialize just an array', () => {
+    test('Should serialize just an array', () => {
         testBidirectional([
             123,
             'hello',
@@ -10,7 +11,7 @@ describe('Arrays serialization', () => {
         ]);
     });
 
-    it('Should serialize and deserialize a simple array', () => {
+    test('Should serialize and deserialize a simple array', () => {
         testBidirectional({
             'array': [
                 123,
@@ -22,7 +23,7 @@ describe('Arrays serialization', () => {
         });
     });
 
-    it('Should serialize and deserialize a huge, nested array', () => {
+    test('Should serialize and deserialize a huge, nested array', () => {
         testBidirectional({
             'array': [
                 123,

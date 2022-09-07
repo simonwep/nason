@@ -1,3 +1,4 @@
+import {expect} from 'vitest';
 import {deserialize, Encoder, SerializableValue, serialize, use} from '../src';
 
 export const testBidirectional = (data: SerializableValue): void => {
