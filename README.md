@@ -50,25 +50,19 @@ $ yarn add nason
 Include directly via [jsdelivr](https://www.jsdelivr.com/package/npm/nason):
 
 ```html
-
 <script src="https://cdn.jsdelivr.net/npm/nason/lib/nason.min.js"></script>
 ```
 
-Using [JavaScript Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules):
+Using [ES Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules):
 
 ````js
-import {
-
-...
-}
-from
-'https://cdn.jsdelivr.net/npm/nason/lib/nason.min.mjs'
+import { deserialize, serialize } from 'https://cdn.jsdelivr.net/npm/nason/lib/nason.min.mjs'
 ````
 
 ### Usage
 
 ```js
-import {deserialize, serialize} from 'nason';
+import { deserialize, serialize } from 'nason';
 
 // Serialize something; you'll get a Uint8Array in return.
 // You can pass any kind of supported data-type you want to serialize.
@@ -99,8 +93,8 @@ import {
 
 ### Data-types
 
-| Data-type | Status |
-| --------- | ------ |
+| Data-type | Status            |
+|-----------|-------------------|
 | `object`  | ✅ Fully supported |
 | `array`   | ✅ Fully supported |
 | `string`  | ✅ Fully supported |

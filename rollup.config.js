@@ -9,7 +9,7 @@ const production = process.env.NODE_ENV === 'production';
 export default {
     input: 'src/index.ts',
     plugins: [
-        typescript({}),
+        typescript(),
         (production && terser()),
         replace({
             preventAssignment: true,
